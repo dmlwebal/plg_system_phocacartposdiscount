@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="system" method="upgrade">
+	<name>PLG_SYSTEM_PHOCACARTPOSDISCOUNT</name>
+	<author>David Leeman</author>
+	<creationDate>2026-10</creationDate>
+	<copyright>(C) 2026 David Leeman. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>1.0.0</version>
+	<description>PLG_SYSTEM_PHOCACARTPOSDISCOUNT_XML_DESCRIPTION</description>
+	<namespace path="src">DavidLeeman\Plugin\System\PhocaCartPosDiscount</namespace>
+
+	<files>
+		<folder plugin="phocacartposdiscount">services</folder>
+		<folder>src</folder>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/plg_system_phocacartposdiscount.ini</language>
+		<language tag="en-GB">language/en-GB/plg_system_phocacartposdiscount.sys.ini</language>
+	</languages>
+
+	<media destination="plg_system_phocacartposdiscount" folder="media">
+		<filename>joomla.asset.json</filename>
+		<folder>js</folder>
+		<folder>css</folder>
+	</media>
+
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic" label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_FIELDSET_ACCESS">
+				<field
+					name="allowed_groups"
+					type="usergrouplist"
+					multiple="true"
+					layout="joomla.form.field.list-fancy-select"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_ALLOWED_GROUPS_LABEL"
+					description="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_ALLOWED_GROUPS_DESC"
+				/>
+				<field
+					name="allowed_users"
+					type="subform"
+					multiple="true"
+					min="0"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_ALLOWED_USERS_LABEL"
+					description="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_ALLOWED_USERS_DESC"
+				>
+					<form>
+						<field
+							name="user"
+							type="user"
+							label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_USER_LABEL"
+							required="true"
+						/>
+					</form>
+				</field>
+			</fieldset>
+
+			<fieldset name="limits" label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_FIELDSET_LIMITS">
+				<field
+					name="default_max_percent"
+					type="number"
+					default="0"
+					min="0"
+					max="100"
+					step="0.01"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_DEFAULT_MAX_PERCENT_LABEL"
+					description="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_DEFAULT_MAX_PERCENT_DESC"
+				/>
+				<field
+					name="default_max_amount"
+					type="number"
+					default="0"
+					min="0"
+					step="0.01"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_DEFAULT_MAX_AMOUNT_LABEL"
+					description="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_DEFAULT_MAX_AMOUNT_DESC"
+				/>
+				<field
+					name="group_limits"
+					type="subform"
+					multiple="true"
+					min="0"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_GROUP_LIMITS_LABEL"
+					description="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_GROUP_LIMITS_DESC"
+				>
+					<form>
+						<field
+							name="group"
+							type="usergrouplist"
+							label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_GROUP_LABEL"
+						/>
+						<field
+							name="max_percent"
+							type="number"
+							default="0"
+							min="0"
+							max="100"
+							step="0.01"
+							label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_MAX_PERCENT_LABEL"
+						/>
+						<field
+							name="max_amount"
+							type="number"
+							default="0"
+							min="0"
+							step="0.01"
+							label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_MAX_AMOUNT_LABEL"
+						/>
+					</form>
+				</field>
+			</fieldset>
+
+			<fieldset name="options" label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_FIELDSET_OPTIONS">
+				<field
+					name="allow_percent"
+					type="radio"
+					layout="joomla.form.field.radio.switcher"
+					default="1"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_ALLOW_PERCENT_LABEL"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field
+					name="allow_flat"
+					type="radio"
+					layout="joomla.form.field.radio.switcher"
+					default="1"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_ALLOW_FLAT_LABEL"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field
+					name="coupon_title"
+					type="text"
+					default="Staff discount"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_COUPON_TITLE_LABEL"
+					description="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_COUPON_TITLE_DESC"
+				/>
+				<field
+					name="require_reason"
+					type="radio"
+					layout="joomla.form.field.radio.switcher"
+					default="0"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_REQUIRE_REASON_LABEL"
+					description="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_REQUIRE_REASON_DESC"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field
+					name="reasons"
+					type="textarea"
+					rows="5"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_REASONS_LABEL"
+					description="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_REASONS_DESC"
+				/>
+				<field
+					name="validity_hours"
+					type="number"
+					default="24"
+					min="1"
+					max="720"
+					step="1"
+					label="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_VALIDITY_LABEL"
+					description="PLG_SYSTEM_PHOCACARTPOSDISCOUNT_VALIDITY_DESC"
+				/>
+			</fieldset>
+
+		</fields>
+	</config>
+</extension>

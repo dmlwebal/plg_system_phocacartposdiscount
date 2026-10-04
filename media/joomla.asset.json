@@ -1,0 +1,25 @@
+{
+	"$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+	"name": "plg_system_phocacartposdiscount",
+	"version": "1.0.0",
+	"description": "Phoca Cart POS Discount",
+	"license": "GPL-2.0-or-later",
+	"assets": [
+		{
+			"name": "plg_system_phocacartposdiscount.pos",
+			"type": "script",
+			"uri": "plg_system_phocacartposdiscount/pos-discount.js",
+			"attributes": {
+				"defer": true
+			},
+			"dependencies": [
+				"core"
+			]
+		},
+		{
+			"name": "plg_system_phocacartposdiscount.pos",
+			"type": "style",
+			"uri": "plg_system_phocacartposdiscount/pos-discount.css"
+		}
+	]
+}
